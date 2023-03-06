@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Apple",
+        "score": 98,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 298,
+        "dislikeCount": 27
+    },
+    {
+        "name": "Microsoft",
+        "score": 93,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 183,
+        "dislikeCount": 58
+    },
+    {
+        "name": "Tesla",
+        "score": 78,
+        "modifiedDate": "2023/03/03",
+        "likeCount": 238,
+        "dislikeCount": 90
+    },
+    {
+        "name": "AMZN",
+        "score": 88,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 242,
+        "dislikeCount": 38
+    },
+    {
+        "name": "META",
+        "score": 96,
+        "modifiedDate": "2023/03/02",
+        "likeCount": 353,
+        "dislikeCount": 17
+    },
+    {
+        "name": "AT&T",
+        "score": 78,
+        "modifiedDate": "2023/02/28",
+        "likeCount": 120,
+        "dislikeCount": 102
+    },
+    {
+        "name": "Lucid Group",
+        "score": 80,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 156,
+        "dislikeCount": 35
+    },
+    {
+        "name": "AMD",
+        "score": 85,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 142,
+        "dislikeCount": 12
+    },
+    {
+        "name": "Netflix",
+        "score": 96,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 277,
+        "dislikeCount": 30
+    },{
+        "name": "Samsung",
+        "score": 76,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 412,
+        "dislikeCount": 127
+    },
+    {
+        "name": "Kakao Bank",
+        "score": 82,
+        "modifiedDate": "2023/03/06",
+        "likeCount": 97,
+        "dislikeCount": 10
+    }
+]

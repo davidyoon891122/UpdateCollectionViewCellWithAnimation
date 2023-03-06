@@ -15,6 +15,8 @@
 		4950F75429B54FD400EE043B /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950F75329B54FD400EE043B /* CollectionViewCell.swift */; };
 		4950F75629B5502300EE043B /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950F75529B5502300EE043B /* ImageLabelView.swift */; };
 		4950F75829B5553F00EE043B /* DynamicHeightFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950F75729B5553F00EE043B /* DynamicHeightFlowLayout.swift */; };
+		4950F75A29B5696600EE043B /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950F75929B5696600EE043B /* CompanyModel.swift */; };
+		4950F75C29B56C4A00EE043B /* CompanyMockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4950F75B29B56C4A00EE043B /* CompanyMockData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		4950F75329B54FD400EE043B /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		4950F75529B5502300EE043B /* ImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
 		4950F75729B5553F00EE043B /* DynamicHeightFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightFlowLayout.swift; sourceTree = "<group>"; };
+		4950F75929B5696600EE043B /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
+		4950F75B29B56C4A00EE043B /* CompanyMockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CompanyMockData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				4950F75329B54FD400EE043B /* CollectionViewCell.swift */,
 				4950F75529B5502300EE043B /* ImageLabelView.swift */,
 				4950F75729B5553F00EE043B /* DynamicHeightFlowLayout.swift */,
+				4950F75929B5696600EE043B /* CompanyModel.swift */,
+				4950F75B29B56C4A00EE043B /* CompanyMockData.json */,
 			);
 			path = UpdateCellWithAnimation;
 			sourceTree = "<group>";
@@ -136,6 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4950F75C29B56C4A00EE043B /* CompanyMockData.json in Resources */,
 				4950F74629B54E5000EE043B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +157,7 @@
 				4950F74129B54E4F00EE043B /* ViewController.swift in Sources */,
 				4950F75629B5502300EE043B /* ImageLabelView.swift in Sources */,
 				4950F73D29B54E4F00EE043B /* AppDelegate.swift in Sources */,
+				4950F75A29B5696600EE043B /* CompanyModel.swift in Sources */,
 				4950F75429B54FD400EE043B /* CollectionViewCell.swift in Sources */,
 				4950F75829B5553F00EE043B /* DynamicHeightFlowLayout.swift in Sources */,
 				4950F73F29B54E4F00EE043B /* SceneDelegate.swift in Sources */,

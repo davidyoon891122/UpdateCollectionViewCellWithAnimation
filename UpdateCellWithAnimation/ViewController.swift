@@ -33,6 +33,11 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemCyan
         setupViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadMockData()
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -73,6 +78,31 @@ private extension ViewController {
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+    }
+    
+    func loadMockData() {
+        let mockDataFileName = "CompanyMockData"
+        guard let path = Bundle.main.path(
+            forResource: mockDataFileName,
+            ofType: "json"
+        ) else {
+            print("Can't find the mock data : \(mockDataFileName).json")
+            return
+        }
+        
+        guard let jsonString = try? String(contentsOfFile: path) else {
+            print("Can't load file to jsonString")
+            return
+        }
+        
+        print(jsonString)
+        
+        do {
+            let model = try JSONDecoder().decode([CompanyModel].self, from: jsonString.data(using: .utf8)!)
+            print(model)
+        } catch let error {
+            print(error)
         }
     }
 }
