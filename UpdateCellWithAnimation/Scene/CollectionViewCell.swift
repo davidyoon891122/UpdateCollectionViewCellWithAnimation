@@ -73,9 +73,8 @@ final class CollectionViewCell: UICollectionViewCell {
         companyTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(offset)
             $0.leading.equalToSuperview().offset(offset)
-            $0.width.lessThanOrEqualTo(150.0)
+            $0.width.greaterThanOrEqualTo(130.0)
         }
-        
         companyTitleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         companyValueLabel.snp.makeConstraints {
@@ -102,28 +101,30 @@ final class CollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(scoreTitleLabel.snp.bottom).offset(offset)
             $0.leading.equalToSuperview().offset(offset)
             $0.bottom.equalToSuperview().offset(-offset)
-            $0.width.equalTo(companyTitleLabel)
         }
         
         dateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         likeView.snp.makeConstraints {
             $0.centerY.equalTo(dateLabel)
-            $0.leading.equalTo(dateLabel.snp.trailing).offset(offset)
-            $0.width.equalTo(100.0)
+            $0.trailing.equalTo(dislikeView.snp.leading).offset(-offset)
         }
         
         dislikeView.snp.makeConstraints {
             $0.centerY.equalTo(likeView)
             $0.leading.equalTo(likeView.snp.trailing).offset(offset)
             $0.trailing.equalToSuperview().offset(-offset)
-            $0.width.equalTo(100.0)
         }
         
         return view
     }()
     
-    func setupCell() {
+    func setupCell(company: CompanyModel) {
+        companyValueLabel.text = company.name
+        scoreValueLabel.text = "\(company.score) scores"
+        dateLabel.text = company.modifiedDate
+        likeView.setCountLabel(countString: "\(company.likeCount) Likes")
+        dislikeView.setCountLabel(countString: "\(company.dislikeCount) Dislikes")
         setupViews()
     }
     

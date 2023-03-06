@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class ViewController: UIViewController {
     private lazy var mainCollectionView: UICollectionView = {
@@ -27,16 +28,23 @@ class ViewController: UIViewController {
         
         return collectionView
     }()
+    
+    private var disposeBag = DisposeBag()
+    
+    private var viewModel: ViewModelType = ViewModel()
+    
+    private var companies: [CompanyModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .systemBackground
         setupViews()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadMockData()
+        viewModel.inputs.requestCompanyScore()
     }
 }
 
@@ -45,7 +53,7 @@ extension ViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 20
+        return companies.count
     }
     
     func collectionView(
@@ -56,7 +64,9 @@ extension ViewController: UICollectionViewDataSource {
             withReuseIdentifier: CollectionViewCell.identifier,
             for: indexPath
         ) as? CollectionViewCell else { return UICollectionViewCell() }
-        cell.setupCell()
+        
+        let company = companies[indexPath.item]
+        cell.setupCell(company: company)
         
         return cell
     }
@@ -79,29 +89,14 @@ private extension ViewController {
         }
     }
     
-    func loadMockData() {
-        let mockDataFileName = "CompanyMockData"
-        guard let path = Bundle.main.path(
-            forResource: mockDataFileName,
-            ofType: "json"
-        ) else {
-            print("Can't find the mock data : \(mockDataFileName).json")
-            return
-        }
-        
-        guard let jsonString = try? String(contentsOfFile: path) else {
-            print("Can't load file to jsonString")
-            return
-        }
-        
-        print(jsonString)
-        
-        do {
-            let model = try JSONDecoder().decode([CompanyModel].self, from: jsonString.data(using: .utf8)!)
-            print(model)
-        } catch let error {
-            print(error)
-        }
+    func bindViewModel() {
+        viewModel.outputs.companyModelPublishSubject
+            .subscribe(onNext: { [weak self] companyModel in
+                guard let self = self else { return }
+                self.companies = companyModel
+                self.mainCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

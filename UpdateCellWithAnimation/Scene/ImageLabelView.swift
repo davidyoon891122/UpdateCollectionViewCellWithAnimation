@@ -18,6 +18,8 @@ final class ImageLabelView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .caption1)
+        label.adjustsFontForContentSizeCategory = true
         
         return label
     }()
@@ -60,6 +62,10 @@ final class ImageLabelView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setCountLabel(countString: String) {
+        titleLabel.text = countString
     }
 }
 
