@@ -100,17 +100,23 @@ private extension ViewController {
         
         
         viewModel.outputs.updateLikeCountPublishSubject
-            .subscribe(onNext: { [weak self] companies, index in
+            .subscribe(onNext: { [weak self] likeCount, index in
                 guard let self = self else { return }
-                let company = companies[index]
                 let indexPath = IndexPath(item: index, section: 0)
                 
-                self.companies = companies
+                guard let cell = self.mainCollectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
+                cell.updateLikeCount(count: likeCount)
+            })
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.outputs.updateDislikeCountPublishSubject
+            .subscribe(onNext: { [weak self] dislikeCount, index in
+                guard let self = self else { return }
+                let indexPath = IndexPath(item: index, section: 0)
                 
                 guard let cell = self.mainCollectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
-                cell.updateLikeCount(count: company.likeCount)
-                cell.layoutIfNeeded()
-                cell.layoutSubviews()
+                cell.updateDislikeCount(count: dislikeCount)
             })
             .disposed(by: disposeBag)
     }

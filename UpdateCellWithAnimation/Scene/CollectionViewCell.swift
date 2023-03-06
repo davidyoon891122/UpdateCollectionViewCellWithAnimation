@@ -118,9 +118,19 @@ final class CollectionViewCell: UICollectionViewCell {
         }
         
         
-        let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLikeView))
+        let likeTapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapLikeView)
+        )
         
         likeView.addGestureRecognizer(likeTapGesture)
+        
+        let dislikeTapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapDislikeView)
+        )
+        
+        dislikeView.addGestureRecognizer(dislikeTapGesture)
         
         return view
     }()
@@ -137,6 +147,7 @@ final class CollectionViewCell: UICollectionViewCell {
         likeView.setCountLabel(countString: "\(company.likeCount) Likes")
         dislikeView.setCountLabel(countString: "\(company.dislikeCount) Dislikes")
         likeView.tag = index
+        dislikeView.tag = index
         setupViews()
     }
     
@@ -159,6 +170,10 @@ final class CollectionViewCell: UICollectionViewCell {
     
     func updateLikeCount(count: Int) {
         likeView.setCountLabel(countString: "\(count) Likes")
+    }
+    
+    func updateDislikeCount(count: Int) {
+        dislikeView.setCountLabel(countString: "\(count) Dislikes")
     }
 }
 
@@ -197,6 +212,33 @@ private extension CollectionViewCell {
                               let viewModel = self.viewModel
                         else { return }
                         viewModel.inputs.updateLikeCount(index: self.likeView.tag)
+                    }
+                )
+            }
+        )
+    }
+    
+    @objc
+    func didTapDislikeView() {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+            animations: {
+                self.dislikeView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0.2,
+                    usingSpringWithDamping: 0.5,
+                    initialSpringVelocity: 0.5,
+                    animations: {
+                        self.dislikeView.transform = .identity
+                    }, completion: { [weak self] _ in
+                        guard let self = self,
+                              let viewModel = self.viewModel
+                        else { return }
+                        viewModel.inputs.updateDislikeCount(index: self.dislikeView.tag)
                     }
                 )
             }

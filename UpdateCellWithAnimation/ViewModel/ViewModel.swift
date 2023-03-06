@@ -11,11 +11,13 @@ import RxSwift
 protocol ViewModelInput {
     func requestCompanyScore()
     func updateLikeCount(index: Int)
+    func updateDislikeCount(index: Int)
 }
 
 protocol ViewModelOutput {
     var companyModelPublishSubject: PublishSubject<[CompanyModel]> { get }
-    var updateLikeCountPublishSubject: PublishSubject<([CompanyModel], Int)> { get }
+    var updateLikeCountPublishSubject: PublishSubject<(Int, Int)> { get }
+    var updateDislikeCountPublishSubject: PublishSubject<(Int, Int)> { get }
 }
 
 protocol ViewModelType {
@@ -28,7 +30,8 @@ final class ViewModel: ViewModelInput, ViewModelOutput, ViewModelType {
     var outputs: ViewModelOutput { self }
     
     var companyModelPublishSubject: PublishSubject<[CompanyModel]> = .init()
-    var updateLikeCountPublishSubject: PublishSubject<([CompanyModel], Int)> = .init()
+    var updateLikeCountPublishSubject: PublishSubject<(Int, Int)> = .init()
+    var updateDislikeCountPublishSubject: PublishSubject<(Int, Int)> = .init()
     
     private var disposeBag = DisposeBag()
     private var companies: [CompanyModel] = []
@@ -40,9 +43,13 @@ final class ViewModel: ViewModelInput, ViewModelOutput, ViewModelType {
     
     func updateLikeCount(index: Int) {
         companies[index].likeCount += 1
+        updateLikeCountPublishSubject.onNext((companies[index].likeCount, index))
         
-        updateLikeCountPublishSubject.onNext((companies, index))
-        
+    }
+    
+    func updateDislikeCount(index: Int) {
+        companies[index].dislikeCount += 1
+        updateDislikeCountPublishSubject.onNext((companies[index].dislikeCount, index))
     }
     
     
