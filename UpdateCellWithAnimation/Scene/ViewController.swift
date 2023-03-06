@@ -60,8 +60,6 @@ extension ViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
-    
 }
 
 private extension ViewController {
