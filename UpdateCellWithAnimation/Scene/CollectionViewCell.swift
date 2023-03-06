@@ -52,9 +52,9 @@ final class CollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var likeView = ImageLabelView(title: "Like", imageName: "hand.thumbsup.fill")
+    private lazy var likeView = ImageLabelView(title: "Like", imageName: "hand.thumbsup.fill", unit: "Likes")
     
-    private lazy var dislikeView = ImageLabelView(title: "Dislike", imageName: "hand.thumbsdown.fill")
+    private lazy var dislikeView = ImageLabelView(title: "Dislike", imageName: "hand.thumbsdown.fill", unit: "Dislikes")
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -144,8 +144,8 @@ final class CollectionViewCell: UICollectionViewCell {
         companyValueLabel.text = company.name
         scoreValueLabel.text = "\(company.score) scores"
         dateLabel.text = company.modifiedDate
-        likeView.setCountLabel(countString: "\(company.likeCount) Likes")
-        dislikeView.setCountLabel(countString: "\(company.dislikeCount) Dislikes")
+        likeView.setCountLabel(count: company.likeCount)
+        dislikeView.setCountLabel(count: company.dislikeCount)
         likeView.tag = index
         dislikeView.tag = index
         setupViews()
@@ -169,11 +169,11 @@ final class CollectionViewCell: UICollectionViewCell {
     
     
     func updateLikeCount(count: Int) {
-        likeView.setCountLabel(countString: "\(count) Likes")
+        likeView.setCountLabel(count: count)
     }
     
     func updateDislikeCount(count: Int) {
-        dislikeView.setCountLabel(countString: "\(count) Dislikes")
+        dislikeView.setCountLabel(count: count)
     }
 }
 

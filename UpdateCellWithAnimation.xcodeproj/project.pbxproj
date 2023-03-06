@@ -20,6 +20,7 @@
 		4950F75F29B571E800EE043B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 4950F75E29B571E800EE043B /* RxCocoa */; };
 		4950F76129B571E800EE043B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4950F76029B571E800EE043B /* RxSwift */; };
 		4950F76829B572E400EE043B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950F76729B572E400EE043B /* ViewModel.swift */; };
+		4950F76B29B5B6E800EE043B /* CountPushLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950F76A29B5B6E800EE043B /* CountPushLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		4950F75929B5696600EE043B /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		4950F75B29B56C4A00EE043B /* CompanyMockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CompanyMockData.json; sourceTree = "<group>"; };
 		4950F76729B572E400EE043B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4950F76A29B5B6E800EE043B /* CountPushLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountPushLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				4950F75729B5553F00EE043B /* DynamicHeightFlowLayout.swift */,
+				4950F76A29B5B6E800EE043B /* CountPushLabel.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				4950F74129B54E4F00EE043B /* ViewController.swift in Sources */,
 				4950F75629B5502300EE043B /* ImageLabelView.swift in Sources */,
 				4950F73D29B54E4F00EE043B /* AppDelegate.swift in Sources */,
+				4950F76B29B5B6E800EE043B /* CountPushLabel.swift in Sources */,
 				4950F75A29B5696600EE043B /* CompanyModel.swift in Sources */,
 				4950F75429B54FD400EE043B /* CollectionViewCell.swift in Sources */,
 				4950F75829B5553F00EE043B /* DynamicHeightFlowLayout.swift in Sources */,
