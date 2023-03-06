@@ -66,7 +66,7 @@ extension ViewController: UICollectionViewDataSource {
         ) as? CollectionViewCell else { return UICollectionViewCell() }
         
         let company = companies[indexPath.item]
-        cell.setupCell(company: company)
+        cell.setupCell(company: company, viewModel: self.viewModel, index: indexPath.item)
         
         return cell
     }
@@ -95,6 +95,22 @@ private extension ViewController {
                 guard let self = self else { return }
                 self.companies = companyModel
                 self.mainCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.outputs.updateLikeCountPublishSubject
+            .subscribe(onNext: { [weak self] companies, index in
+                guard let self = self else { return }
+                let company = companies[index]
+                let indexPath = IndexPath(item: index, section: 0)
+                
+                self.companies = companies
+                
+                guard let cell = self.mainCollectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
+                cell.updateLikeCount(count: company.likeCount)
+                cell.layoutIfNeeded()
+                cell.layoutSubviews()
             })
             .disposed(by: disposeBag)
     }

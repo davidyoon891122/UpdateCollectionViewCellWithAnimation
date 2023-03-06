@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class CollectionViewCell: UICollectionViewCell {
     static let identifier = "CollectionViewCell"
@@ -116,15 +117,26 @@ final class CollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().offset(-offset)
         }
         
+        
+        let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLikeView))
+        
+        likeView.addGestureRecognizer(likeTapGesture)
+        
         return view
     }()
     
-    func setupCell(company: CompanyModel) {
+    private var disposeBag = DisposeBag()
+    
+    private var viewModel: ViewModelType?
+    
+    func setupCell(company: CompanyModel, viewModel: ViewModelType, index: Int) {
+        self.viewModel = viewModel
         companyValueLabel.text = company.name
         scoreValueLabel.text = "\(company.score) scores"
         dateLabel.text = company.modifiedDate
         likeView.setCountLabel(countString: "\(company.likeCount) Likes")
         dislikeView.setCountLabel(countString: "\(company.dislikeCount) Dislikes")
+        likeView.tag = index
         setupViews()
     }
     
@@ -137,6 +149,16 @@ final class CollectionViewCell: UICollectionViewCell {
         )
         
         return layoutAttributes
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    
+    func updateLikeCount(count: Int) {
+        likeView.setCountLabel(countString: "\(count) Likes")
     }
 }
 
@@ -152,5 +174,32 @@ private extension CollectionViewCell {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    @objc
+    func didTapLikeView() {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+            animations: {
+                self.likeView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0.2,
+                    usingSpringWithDamping: 0.5,
+                    initialSpringVelocity: 0.5,
+                    animations: {
+                        self.likeView.transform = .identity
+                    }, completion: { [weak self] _ in
+                        guard let self = self,
+                              let viewModel = self.viewModel
+                        else { return }
+                        viewModel.inputs.updateLikeCount(index: self.likeView.tag)
+                    }
+                )
+            }
+        )
     }
 }
